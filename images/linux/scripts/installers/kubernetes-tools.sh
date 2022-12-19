@@ -1,7 +1,7 @@
 #!/bin/bash -e
 ################################################################################
 ##  File:  kubernetes-tools.sh
-##  Desc:  Installs kubectl, helm, kustomize
+##  Desc:  Installs kubectl, helm, kustomize, kops
 ################################################################################
 
 # Source the helpers for use with the script
@@ -28,5 +28,16 @@ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 download_url="https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"
 curl -s "$download_url" | bash
 mv kustomize /usr/local/bin
+
+# Install kops
+download_url="https://github.com/kubernetes/kops/releases/download"
+KOPS_VERSION=$(curl -s "https://api.github.com/repos/kubernetes/kops/releases/latest" | grep tag_name | cut -d '"' -f 4)
+package="kops-linux-amd64"
+dest_directory="/usr/local/bin/kops"
+
+curl -LO "$download_url/$KOPS_VERSION/$package"
+chmod +x $package
+sudo mv $package $dest_directory
+
 
 invoke_tests "Tools" "Kubernetes tools"
