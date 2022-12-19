@@ -21,4 +21,7 @@ Choco-Install -PackageName kubernetes-helm
 Write-Host "Install Minikube"
 Choco-Install -PackageName minikube
 
+Write-Host "Install Kubernetes Operations"
+Choco-Install -PackageName kubernetes-kops
+
 Invoke-PesterTests -TestFile "Tools" -TestName "KubernetesTools"

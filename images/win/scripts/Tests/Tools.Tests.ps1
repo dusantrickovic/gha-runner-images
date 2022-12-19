@@ -79,6 +79,10 @@ Describe "KubernetesTools" {
     It "minikube" {
         "minikube version --short" | Should -ReturnZeroExitCode
     }
+
+    It "kops" {
+        "kops version" | Should -ReturnZeroExitCode
+    }
 }
 
 Describe "Mingw64" {
