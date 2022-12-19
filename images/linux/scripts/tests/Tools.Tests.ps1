@@ -302,6 +302,10 @@ Describe "Kubernetes tools" {
     It "kustomize" {
         "kustomize version" | Should -ReturnZeroExitCode
     }
+
+    It "kops" {
+        "kops version" | Should -ReturnZeroExitCode
+    }
 }
 
 Describe "Leiningen" {
